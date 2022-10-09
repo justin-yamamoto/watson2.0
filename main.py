@@ -8,18 +8,12 @@ listener = sr.Recognizer()
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[3].id)  # apply voice choice
-engine.say('welcome back, how may i assist you') # start up voice line
-# engine.say('how may i help')
-# v in voices:
-# print(v)
-
-engine.runAndWait()
+# engine.say('welcome back, how may I assist you')  # start up voice line
 
 
 def talk(text):
     engine.say(text)
     engine.runAndWait()
-
 
 def take_command():
     try:
@@ -31,13 +25,13 @@ def take_command():
             if 'watson' in command:
                 command = command.replace('watson', '')
                 print(command)
-
     except:
         pass
     return command
 
 
 def run_watson():
+
     command = take_command()
     print(command)
 
@@ -56,20 +50,25 @@ def run_watson():
 
     elif 'who' in command:
         person = command.replace('who', '')
-        info = wikipedia.summary(person, 3)
+        info = wikipedia.summary(person, 1)
         print(info)
         talk(info)
-    elif 'how do i' in command:
-        directions = command.replace('how', '')
-        instructions = pywhatkit.info(directions, 3)
-        print(instructions)
-        talk(instructions)
 
     elif 'google' in command:
         googlePhrase = command.replace('google', '')
-        googleSearch = pywhatkit.search(googlePhrase)
-        print(googleSearch)
-        talk(googleSearch)
+        pywhatkit.search(googlePhrase)
+
+    elif 'are you there' in command:
+        talk('i am here')
+
+    elif 'how are you' in command:
+        talk('i am swell thank you for asking')
+
+    elif 'can you hear me' in command:
+        talk('i can hear you')
+
+    elif 'who is your creator' in command:
+        talk('justin yamamoto created me')
 
     else:
         talk('please repeat the command again.')
