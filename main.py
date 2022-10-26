@@ -39,6 +39,7 @@ def run_watson():
         song = command.replace('play', '')  # replace "play" from command and take only song name
         talk('playing' + song)  # have watson say "playing" and the song name taken from prior line
         pywhatkit.playonyt(song)  # play said song on YouTube
+        return run_watson()
 
     elif 'time' in command:
         time = datetime.datetime.now().strftime('%H:%M')
@@ -68,7 +69,7 @@ def run_watson():
         talk('i can hear you')
 
     elif 'who is your creator' in command:
-        talk('justin yamamoto created me')
+        talk('Justin Yamamoto is my creator')
 
     else:
         talk('please repeat the command again.')
